@@ -1,0 +1,106 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: radial-gradient(#eac4ff, #9e57c5);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.stairs {
+  position: relative;
+  width: 500px;
+  height: 300px;
+  transform-style: preserve-3d;
+  transform: rotateX(-30deg) rotateY(160deg);
+  animation: animate 10s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    transform: rotateX(-30deg) rotateY(0);
+  }
+  100% {
+    transform: rotateX(-30deg) rotateY(360deg);
+  }
+}
+
+.stairs .base {
+  position: absolute;
+  top: 0;
+  left: 60px;
+  width: 360px;
+  height: 300px;
+  background: #a54bcf;
+  transform: rotateX(90deg) translateZ(-150px) scale(1.25);
+  filter: blur(20px);
+  opacity: 0.5;
+}
+
+.stairs .step {
+  position: absolute;
+  left: calc(60px * var(--j));
+  bottom: 0;
+  width: 60px;
+  height: calc(60px * var(--j));
+  transform-style: preserve-3d;
+}
+
+.stairs .step::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0;
+  width: 60px;
+  background: #cf8df1;
+  height: 300px;
+  transform: rotateX(90deg) translateZ(150px);
+}
+
+.stairs .step:hover::before {
+  filter: brightness(1.1);
+  cursor: pointer;
+}
+
+.stairs .step::after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0;
+  width: 300px;
+  background: #ae52dd;
+  height: 60px;
+  transform: rotateY(90deg) translateZ(-150px);
+}
+
+.stairs .step i {
+  position: absolute;
+  display: block;
+  height: 100%;
+  width: 60px;
+  background: #a54bcf;
+  transform-style: preserve-3d;
+}
+
+.stairs .step i:first-child {
+  transform: translateZ(150px);
+}
+
+.stairs .step i:last-child {
+  transform: translateZ(-150px);
+}
+
+.stairs .step:last-child i:last-child::before {
+  content: "";
+  position: absolute;
+  background: #ae52dd;
+  width: 300px;
+  height: 100%;
+  transform: rotateY(90deg) translate3d(-150px, 0, -90px);
+}
